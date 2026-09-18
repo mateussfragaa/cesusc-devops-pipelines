@@ -1,0 +1,28 @@
+{
+  "name": "cesusc-devops-pipelines",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateussfragaa/cesusc-devops-pipelines.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mateussfragaa/cesusc-devops-pipelines/issues"
+  },
+  "homepage": "https://github.com/mateussfragaa/cesusc-devops-pipelines#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.5.1"
+  }
+}
