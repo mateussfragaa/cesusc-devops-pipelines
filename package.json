@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/mateussfragaa/cesusc-devops-pipelines#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "selenium-webdriver": "^4.51.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
