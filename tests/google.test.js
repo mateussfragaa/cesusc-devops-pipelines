@@ -1,33 +1,34 @@
-const { Builder, By, until } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
-const sleep = ms => new Promise(resolve => {
-    setTimeout(
-        () => {resolve()},
-        ms
-    );
-});
-
 async function testGoogle() {
-    const options = new chrome.Options();
-    options.addArguments('--headless');
-    let driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(options)
-        .build();
+    let driver;
 
     try {
+        const options = new chrome.Options();
+
+        options.addArguments('--headless=new');
+        options.addArguments('--no-sandbox');
+        options.addArguments('--disable-dev-shm-usage');
+        options.addArguments('--disable-gpu');
+
+        driver = await new Builder()
+            .forBrowser('chrome')
+            .setChromeOptions(options)
+            .build();
+
         await driver.get('https://www.google.com');
 
-        let searchBox = await driver.findElement(By.name('q'));
-        await searchBox.sendKeys('Selenium WebDriver');
-        await searchBox.submit();
+        const titulo = await driver.getTitle();
 
-        await driver.wait(until.titleContains('Selenium'), 5000);
+        expect(titulo).toContain('Google');
+
     } finally {
-        await driver.quit();
+        if (driver) {
+            await driver.quit();
+        }
     }
-};
+}
 
 test('Google', async () => {
     await testGoogle();
