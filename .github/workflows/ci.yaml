@@ -7,6 +7,13 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: merge-develop-main
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,6 +21,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: develop
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,8 +35,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+          install-chromedriver: true
+
       - name: Run ESLint
         run: npm run lint
 
       - name: Run Jest
         run: npm test -- --runInBand
+
+      - name: Merge develop into main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin main develop
+
+          git checkout -B main origin/main
+
+          git merge --no-ff origin/develop -m "Merge develop into main"
+
+          git push origin main
