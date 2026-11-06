@@ -42,5 +42,5 @@ jobs:
           port: 22
           script: |
             cd /opt/cesusc-devops
-            pm2 stop src/app.js
+            pm2 stop app
             pm2 start src/app.js
