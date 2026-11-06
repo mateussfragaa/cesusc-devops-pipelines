@@ -32,3 +32,15 @@ jobs:
           remote_host: 54.233.232.179
           remote_user: ubuntu
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Restart node
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 54.233.232.179
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /opt/cesusc-devops
+            pm2 stop src/app.js
+            pm2 start src/app.js
