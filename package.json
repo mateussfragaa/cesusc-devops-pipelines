@@ -1,0 +1,32 @@
+{
+  "name": "cesusc-devops-pipelines",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint src/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateussfragaa/cesusc-devops-pipelines.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mateussfragaa/cesusc-devops-pipelines/issues"
+  },
+  "homepage": "https://github.com/mateussfragaa/cesusc-devops-pipelines#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "selenium-webdriver": "^4.51.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "jest": "^30.5.1"
+  }
+}
