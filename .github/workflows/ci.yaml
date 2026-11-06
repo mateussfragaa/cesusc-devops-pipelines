@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo apt update && sudo apt install curl -y
           sudo DEBIAN_FRONTEND=noninteractive \
-          apt install google-chrome -y --allow-downgrades
+          apt install chrome-browser -y --allow-downgrades
 
       - name: Run ESLint
         run: npm run lint
